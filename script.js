@@ -1,6 +1,6 @@
 // ---- Backend connection -----------------------------------------------
 // Change this if your backend runs somewhere else (e.g. after deploying it).
-const API_BASE = "https://studyq-uutb.onrender.com/";
+const API_BASE = "https://studyq-uutb.onrender.com/api";
 
 let token = localStorage.getItem("studyquest_token"); // only the login token lives in the browser
 let state = {
