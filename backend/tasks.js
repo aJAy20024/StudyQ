@@ -1,6 +1,6 @@
 const express = require("express");
 const Task = require("./Task");
-const auth = require("../middleware/auth");
+const auth = require("./authMiddleware");
 
 const router = express.Router();
 router.use(auth); // every route below requires login
