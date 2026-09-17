@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("./User");
+const user = require("./User");
 const auth = require("./authMiddleware");
 const { applyStreak } = require("./streak");
 
