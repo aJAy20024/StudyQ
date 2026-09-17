@@ -12,6 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Health check
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 
 app.use("/api/auth", authRoutes);
@@ -19,6 +20,7 @@ app.use("/api/tasks", taskRoutes);
 app.use("/api/notes", noteRoutes);
 app.use("/api/user", userRoutes);
 
+// Fallback error handler
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ message: "Something went wrong on the server." });
