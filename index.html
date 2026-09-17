@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudyQuest - Turn your study into an adventure.">
+  <title>StudyQuest | Student Productivity</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="toast" class="toast"></div>
+
+  <!-- Landing page -->
+  <section id="landing" class="landing">
+    <nav class="top-nav">
+      <a class="brand" href="#landing"><span class="brand-icon">📖</span> StudyQuest</a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+      </div>
+      <button class="btn primary" data-action="enter-app">Get Started</button>
+    </nav>
+
+    <div class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">🎮 GAMIFIED LEARNING</span>
+        <h1>Turn Your Study<br>Into an <span>Adventure.</span></h1>
+        <p>Set goals, complete tasks, earn XP, level up, and build a study streak while you work toward your dreams.</p>
+        <div class="hero-actions">
+          <button class="btn primary large" data-action="enter-app">Start Your Quest →</button>
+          <a class="btn ghost large" href="#features">Explore Features</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="moon"></div>
+        <div class="mountain mountain-back"></div>
+        <div class="mountain mountain-front"></div>
+        <div class="flag">⚑</div>
+        <div class="traveler">🎒</div>
+      </div>
+    </div>
+
+    <div id="features" class="feature-strip">
+      <div><b>🎮 Gamified Learning</b><span>Earn XP & level up</span></div>
+      <div><b>🎯 Set Goals</b><span>Stay on track</span></div>
+      <div><b>📊 Track Progress</b><span>See your growth</span></div>
+      <div><b>🏆 Earn Achievements</b><span>Unlock badges</span></div>
+    </div>
+
+    <section id="about" class="landing-about">
+      <span class="eyebrow">WHY STUDYQUEST?</span>
+      <h2>A simple productivity system with a game-like experience.</h2>
+      <p>StudyQuest combines tasks, focus sessions, notes, progress tracking and achievements in one student-friendly dashboard.</p>
+    </section>
+
+    <footer class="landing-footer">Made by <strong>AJAY SINGH BHAU</strong></footer>
+  </section>
+
+  <!-- Application -->
+  <section id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-icon">📖</span> StudyQuest</div>
+      <nav>
+        <button class="side-link active" data-page="dashboard">⌂ <span>Dashboard</span></button>
+        <button class="side-link" data-page="tasks">☑ <span>Tasks</span></button>
+        <button class="side-link" data-page="focus">◷ <span>Focus</span></button>
+        <button class="side-link" data-page="progress">▥ <span>Progress</span></button>
+        <button class="side-link" data-page="achievements">★ <span>Achievements</span></button>
+        <button class="side-link" data-page="notes">▤ <span>Notes</span></button>
+        <button class="side-link" data-page="settings">⚙ <span>Settings</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="side-link" data-action="back-home">← <span>Home</span></button>
+        <button class="side-link" data-action="logout">⏻ <span>Log Out</span></button>
+        <small>StudyQuest v1.0</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="app-header">
+        <button class="mobile-menu" id="mobileMenu">☰</button>
+        <div>
+          <span class="muted" id="dateText"></span>
+          <h2 id="pageTitle">Dashboard</h2>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn" id="themeToggle" title="Toggle theme">☾</button>
+          <button class="avatar" data-page="settings" id="avatarLetter">A</button>
+          <span class="user-name" id="userNameLabel">Student</span>
+        </div>
+      </header>
+
+      <div class="page active-page" id="dashboard">
+        <div class="welcome-row">
+          <div>
+            <span class="eyebrow">WELCOME BACK</span>
+            <h1>Keep going, you're doing great! 🚀</h1>
+            <p class="muted">Every completed task takes you one step closer to your goals.</p>
+          </div>
+          <button class="btn primary" data-action="add-task">＋ Add Task</button>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon blue">☑</span><div><small>Total Tasks</small><strong id="totalTasks">0</strong><span class="muted" id="completedTasksText">0 completed</span></div></article>
+          <article class="stat-card"><span class="stat-icon cyan">◷</span><div><small>Focus Sessions</small><strong id="focusSessions">0</strong><span class="muted">Today</span></div></article>
+          <article class="stat-card"><span class="stat-icon gold">★</span><div><small>XP Earned</small><strong id="xpEarned">0</strong><span class="xp-green">+50 today</span></div></article>
+          <article class="stat-card"><span class="stat-icon orange">🔥</span><div><small>Study Streak</small><strong id="streak">1 day</strong><span class="muted">Keep it up!</span></div></article>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="panel missions">
+            <div class="panel-head"><div><h3>Today's Missions</h3><p class="muted">Complete tasks to earn XP.</p></div><button class="text-btn" data-page="tasks">View all →</button></div>
+            <div id="missionList"></div>
+          </section>
+          <section class="panel level-card">
+            <div class="level-top"><div class="level-avatar">🧑‍🚀</div><div><small>LEVEL</small><h3 id="levelNumber">1</h3><span id="levelTitle">Student Explorer</span></div></div>
+            <div class="progress-line"><span id="levelProgress"></span></div>
+            <div class="level-bottom"><span id="levelXp">0 / 100 XP</span><span>Next Level</span></div>
+            <div class="mini-achievements"><span>🎯</span><span>🔥</span><span>🏆</span><span>🚀</span></div>
+          </section>
+        </div>
+
+        <section class="panel quote-panel">
+          <span class="quote-mark">“</span>
+          <div><h3>Today's Motivation</h3><p id="motivation">Small progress is still progress. Keep moving forward!</p></div>
+          <button class="btn ghost" data-action="new-quote">New Quote</button>
+        </section>
+      </div>
+
+      <div class="page" id="tasks">
+        <div class="page-head"><div><span class="eyebrow">QUEST LOG</span><h1>Your Tasks</h1><p class="muted">Manage your study tasks and earn XP.</p></div><button class="btn primary" data-action="add-task">＋ Add Task</button></div>
+        <div class="tabs"><button class="tab active" data-filter="all">All</button><button class="tab" data-filter="pending">Pending</button><button class="tab" data-filter="completed">Completed</button></div>
+        <section class="panel"><div id="allTasks" class="task-list"></div></section>
+      </div>
+
+      <div class="page" id="focus">
+        <div class="page-head"><div><span class="eyebrow">FOCUS MODE</span><h1>Stay focused, achieve more.</h1><p class="muted">Use the Pomodoro technique to study in focused intervals.</p></div></div>
+        <div class="focus-layout">
+          <section class="panel timer-panel">
+            <div class="timer-ring"><div><span id="timer">25:00</span><small id="timerMode">Focus Time</small></div></div>
+            <div class="timer-controls"><button class="btn primary large" id="timerStart">▶ Start</button><button class="btn ghost large" id="timerReset">↻ Reset</button></div>
+            <div class="session-note">Sessions completed today: <strong id="focusCount">0</strong></div>
+          </section>
+          <div class="focus-info">
+            <section class="panel"><h3>Pomodoro Technique</h3><div class="method"><span>🟢</span><b>25 min</b><span>Focus</span></div><div class="method"><span>⚪</span><b>5 min</b><span>Break</span></div><div class="method"><span>🔵</span><b>4</b><span>Cycles</span></div></section>
+            <section class="panel tips"><h3>💡 Quick Tips</h3><ul><li>Find a quiet place.</li><li>Remove distractions.</li><li>Keep water nearby.</li><li>Take a real break.</li></ul></section>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" id="progress">
+        <div class="page-head"><div><span class="eyebrow">YOUR JOURNEY</span><h1>Progress</h1><p class="muted">See your performance and improvements.</p></div></div>
+        <div class="progress-cards">
+          <article class="panel progress-stat"><small>Tasks Completed</small><strong id="progressTasks">0 / 0</strong><div class="bar"><span id="taskBar"></span></div></article>
+          <article class="panel progress-stat"><small>XP Earned</small><strong id="progressXp">0</strong><span class="xp-green">Keep leveling up!</span></article>
+          <article class="panel progress-stat"><small>Current Level</small><strong id="progressLevel">1</strong><span class="muted">Student Explorer</span></article>
+        </div>
+        <div class="chart-grid">
+          <section class="panel"><div class="panel-head"><h3>Weekly Activity</h3><span class="muted">Study sessions</span></div><div class="bars" id="weeklyBars"></div></section>
+          <section class="panel"><div class="panel-head"><h3>Task Distribution</h3></div><div class="donut-wrap"><div class="donut" id="donut"></div><div><p>🟢 Completed <b id="doneLegend">0</b></p><p>🟡 Pending <b id="pendingLegend">0</b></p></div></div></section>
+        </div>
+      </div>
+
+      <div class="page" id="achievements">
+        <div class="page-head"><div><span class="eyebrow">MILESTONES</span><h1>Achievements</h1><p class="muted">Complete challenges and collect badges.</p></div></div>
+        <div class="achievement-grid" id="achievementGrid"></div>
+      </div>
+
+      <div class="page" id="notes">
+        <div class="page-head"><div><span class="eyebrow">KNOWLEDGE BASE</span><h1>My Notes</h1><p class="muted">Keep important ideas, formulas and reminders.</p></div><button class="btn primary" data-action="add-note">＋ Add Note</button></div>
+        <div id="notesGrid" class="notes-grid"></div>
+      </div>
+
+      <div class="page" id="settings">
+        <div class="page-head"><div><span class="eyebrow">CUSTOMIZE</span><h1>Settings</h1><p class="muted">Customize your StudyQuest experience.</p></div></div>
+        <div class="settings-grid">
+          <section class="panel settings-section"><h3>Appearance</h3><label class="setting-row"><span>Dark Mode</span><input type="checkbox" id="darkMode" checked><span class="switch"></span></label><label class="setting-row"><span>Animations</span><input type="checkbox" id="animations" checked><span class="switch"></span></label></section>
+          <section class="panel settings-section"><h3>Profile</h3><label>Name<input id="profileName" value="Ajay"></label><label>Goal<input id="profileGoal" value="Become a better developer"></label><button class="btn primary" data-action="save-profile">Save Changes</button></section>
+          <section class="panel settings-section danger-zone"><h3>Account</h3><p class="muted">Your tasks, notes and progress are saved to your account on the server.</p><button class="btn danger" data-action="logout">Log Out</button></section>
+        </div>
+        <div class="signature">StudyQuest • Made by <strong>AJAY SINGH BHAU</strong></div>
+      </div>
+    </main>
+  </section>
+
+  <!-- Login / Register modal -->
+  <div class="modal hidden" id="authModal">
+    <div class="modal-card">
+      <button class="modal-close" data-action="close-auth">×</button>
+      <span class="eyebrow">WELCOME</span>
+      <h2 id="authHeading">Log In to StudyQuest</h2>
+      <div class="tabs" id="authTabs">
+        <button class="tab active" data-auth-tab="login">Log In</button>
+        <button class="tab" data-auth-tab="register">Sign Up</button>
+      </div>
+      <form id="loginForm">
+        <label>Email<input id="loginEmail" type="email" required placeholder="you@example.com"></label>
+        <label>Password<input id="loginPassword" type="password" required placeholder="••••••••"></label>
+        <button class="btn primary full" type="submit">Log In</button>
+      </form>
+      <form id="registerForm" class="hidden">
+        <label>Name<input id="registerName" required placeholder="Your name"></label>
+        <label>Email<input id="registerEmail" type="email" required placeholder="you@example.com"></label>
+        <label>Password<input id="registerPassword" type="password" required minlength="6" placeholder="At least 6 characters"></label>
+        <button class="btn primary full" type="submit">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add task modal -->
+  <div class="modal hidden" id="taskModal">
+    <div class="modal-card">
+      <button class="modal-close" data-action="close-task">×</button>
+      <span class="eyebrow">NEW MISSION</span>
+      <h2>Add a Study Task</h2>
+      <form id="taskForm">
+        <label>Task name<input id="taskName" required placeholder="e.g. Revise Physics"></label>
+        <label>Subject<select id="taskSubject"><option>Mathematics</option><option>Physics</option><option>Programming</option><option>Web Development</option><option>Other</option></select></label>
+        <label>XP reward<input id="taskXp" type="number" min="10" max="200" value="50"></label>
+        <button class="btn primary full" type="submit">Create Mission</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add note modal -->
+  <div class="modal hidden" id="noteModal">
+    <div class="modal-card">
+      <button class="modal-close" data-action="close-note">×</button>
+      <span class="eyebrow">NEW NOTE</span>
+      <h2>Create a Note</h2>
+      <form id="noteForm">
+        <label>Title<input id="noteTitle" required placeholder="e.g. Maxwell's Equations"></label>
+        <label>Category<select id="noteCategory"><option>Study</option><option>Ideas</option><option>Programming</option><option>General</option></select></label>
+        <label>Content<textarea id="noteContent" rows="6" required placeholder="Write your note..."></textarea></label>
+        <button class="btn primary full" type="submit">Save Note</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
